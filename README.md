@@ -1,460 +1,274 @@
-# Taller Práctico: AI-Native Software Engineer
+# Taller AI-Native — Entrega
 
-## Descripción
+**Estudiante:** Luis Daniel Lavado Carreño (`ldlavado`)  
+**Repositorio:** https://github.com/ldlavado/Taller-AI-Native  
+**Base del taller:** https://github.com/AndUm423/Taller-AI-Native  
+**Fecha:** 30 de septiembre de 2026
 
-En este taller se debe utilizar un asistente o agente de Inteligencia Artificial como parte del proceso de desarrollo de software.
+Este README es la entrega. El enunciado original se conserva como referencia al final.
 
-La actividad no consiste simplemente en pedirle a una IA que “haga el programa”. El objetivo es aplicar un flujo de trabajo **AI-Native**, donde el desarrollador:
+---
+
+## Qué se entregó
+
+| Archivo | Qué es |
+|---|---|
+| [`task_manager_ai_native.py`](task_manager_ai_native.py) | Programa corregido (Tkinter + lógica de negocio) |
+| [`test_task_manager.py`](test_task_manager.py) | 18 pruebas unitarias (`unittest`) |
+| [`docs/documento_evidencias.md`](docs/documento_evidencias.md) | Copia del proceso y la reflexión |
+
+Flujo aplicado:
 
 ```text
 comprende → proporciona contexto → solicita → verifica → prueba → corrige → documenta
-```
-
-El estudiante recibirá un código con errores y deberá utilizar IA para analizarlo, corregirlo, mejorar su calidad y comprobar que la solución funciona.
-
-- **Lenguaje:** Python
-- **Herramientas sugeridas:** Visual Studio Code, Git y un asistente de programación con IA como GitHub Copilot, ChatGPT, Claude, Gemini, Cursor u otro equivalente.
-
----
-
-## 1. Propósito del taller
-
-Aplicar los principios de un **AI-Native Software Engineer** mediante el análisis, corrección, refactorización y validación de un programa utilizando herramientas de Inteligencia Artificial.
-
-El estudiante asumirá el papel de AI-Native Software Engineer y deberá demostrar que la IA fue utilizada como apoyo dentro de un proceso de ingeniería, no como simple generador de código.
-
----
-
-## 2. Objetivos
-
-### Objetivo general
-
-Aplicar los principios de un AI-Native Software Engineer mediante el análisis, corrección, refactorización y validación de un programa utilizando herramientas de Inteligencia Artificial.
-
-### Objetivos específicos
-
-- Utilizar IA como herramienta de apoyo dentro del ciclo de desarrollo de software.
-- Aplicar técnicas de **context engineering** para proporcionar información relevante al modelo.
-- Diseñar prompts claros, estructurados y orientados a tareas de ingeniería.
-- Identificar errores funcionales, de calidad y de seguridad en código existente.
-- Crear o mejorar pruebas para validar el comportamiento del programa.
-
----
-
-## 3. Situación planteada
-
-Una pequeña empresa utiliza un programa en Python para administrar tareas de sus empleados. El programa permite:
-
-- Crear tareas.
-- Consultar tareas.
-- Marcar tareas como completadas.
-- Eliminar tareas.
-
-Sin embargo, el código presenta varios problemas. El equipo de desarrollo solicita realizar una revisión utilizando herramientas de IA y entregar una versión corregida y validada.
-
-El estudiante asumirá el papel de **AI-Native Software Engineer**.
-
----
-
-## 4. Problemas a investigar
-
-El estudiante deberá analizar el código y descubrir qué aspectos deben mejorarse.
-
-Como mínimo deberán investigarse las siguientes categorías:
-
-### A. Errores funcionales
-
-Determine si las funciones realmente hacen lo que deberían hacer.
-
-Preguntas guía:
-
-- ¿Un usuario puede visualizar tareas de otro usuario?
-- ¿Qué ocurre si se introduce un índice inexistente?
-- ¿Se puede eliminar una tarea que no pertenece al usuario?
-
-### B. Seguridad
-
-Determine si existen problemas relacionados con:
-
-- Control de acceso.
-- Validación de entradas.
-- Acceso a información de otros usuarios.
-- Operaciones no autorizadas.
-
-### C. Testing
-
-Determine qué comportamientos deberían ser comprobados mediante pruebas automáticas.
-
----
-
-## 5. Actividad 1 — Análisis inicial
-
-Antes de pedirle a la IA que modifique el código, el estudiante deberá realizar un análisis propio.
-
-Elabore una tabla como la siguiente:
-
-| Problema | Tipo | Impacto | Posible solución |
-|---|---|---|---|
-| El usuario puede ver tareas ajenas | Seguridad | Alto | Filtrar por usuario |
-| Índice inexistente genera error | Funcional | Medio | Validar índice |
-| ... | ... | ... | ... |
-
-Se deben identificar mínimo **3 problemas**.
-
----
-
-## 6. Actividad 2 — Aplicación de Context Engineering
-
-No se debe comenzar simplemente con un prompt como:
-
-```text
-Corrige este código.
-```
-
-En su lugar, el estudiante deberá construir un contexto para la IA.
-
-El contexto deberá contener, como mínimo:
-
-- Objetivo del sistema.
-- Código original.
-- Requisitos funcionales.
-- Restricciones.
-- Problemas encontrados.
-- Lenguaje utilizado.
-- Comportamiento esperado.
-- Criterios de calidad.
-
-### Ejemplo de prompt
-
-```text
-Actúa como un ingeniero de software senior especializado en Python.
-
-Estamos desarrollando un pequeño sistema de gestión de tareas.
-
-Objetivo:
-Permitir que diferentes usuarios creen, consulten, completen y eliminen sus propias tareas.
-
-Restricciones:
-- Mantener Python.
-- No utilizar bases de datos externas.
-- No agregar frameworks.
-- Mantener una solución sencilla.
-- Evitar modificar innecesariamente la estructura.
-
-Requisitos:
-1. Cada tarea pertenece a un usuario.
-2. Un usuario solo puede consultar sus tareas.
-3. Un usuario solo puede modificar sus tareas.
-4. Deben manejarse índices inválidos.
-5. Las entradas del usuario deben validarse.
-6. El programa no debe finalizar inesperadamente ante entradas incorrectas.
-
-Analiza primero el código.
-No generes todavía la solución final.
-Primero identifica problemas funcionales, de seguridad, calidad y testing.
-```
-
-El estudiante deberá adaptar y mejorar este prompt.
-
-La respuesta deberá contener:
-
-- Problemas encontrados.
-- Explicación de cada problema.
-- Nivel de prioridad.
-- Recomendación de solución.
-
-### Evidencia requerida
-
-Incluya en el documento:
-
-- **Pantallazo 1:** Prompt utilizado.
-- **Pantallazo 2:** Respuesta de la IA.
-
----
-
-## 7. Actividad 3 — Generación de la solución
-
-Después del análisis, solicite a la IA una propuesta de código corregido.
-
-El prompt deberá exigir:
-
-- Mantener las funcionalidades existentes.
-- Corregir los errores identificados.
-- Respetar el usuario propietario de cada tarea.
-- Mejorar la estructura del código.
-- Incorporar mensajes de error apropiados.
-- Evitar cambios que no sean necesarios.
-
-La IA deberá entregar una nueva versión de:
-
-```text
-task_manager_ai_native.py
-```
-
----
-
-## 8. Actividad 4 — Revisión humana
-
-El código generado por la IA no debe aceptarse automáticamente.
-
-El estudiante deberá revisar manualmente la solución y responder:
-
-1. ¿La IA corrigió todos los problemas identificados?
-2. ¿Introdujo algún problema nuevo?
-3. ¿La solución es entendible?
-4. ¿Se mantienen las funcionalidades originales?
-5. ¿Existen problemas de seguridad?
-6. ¿Qué parte de la solución fue modificada por el estudiante?
-
-El estudiante deberá marcar en el código al menos una decisión realizada personalmente.
-
-Ejemplo:
-
-```python
-# DECISIÓN DEL DESARROLLADOR:
-# Se utiliza una función independiente para validar el índice
-```
-
----
-
-## 9. Actividad 5 — Testing con IA
-
-Solicite a la IA crear pruebas para verificar el programa.
-
-Como mínimo deberán probarse:
-
-- Creación de una tarea.
-- Listado de tareas.
-- Restricción por usuario.
-- Completar una tarea.
-- Eliminar una tarea.
-- Índice inválido.
-- Usuario inexistente.
-- Entrada incorrecta.
-- Intento de modificar una tarea de otro usuario.
-
-El estudiante deberá crear un archivo:
-
-```text
-test_task_manager.py
-```
-
-Puede utilizar `pytest` o cualquier otro mecanismo sencillo de pruebas.
-
----
-
-## 10. Actividad 6 — Ejecución y verificación
-
-Ejecute el programa y las pruebas.
-
-El objetivo es demostrar que la solución funciona realmente, no solamente que la IA afirmó que funciona.
-
-El estudiante deberá obtener evidencia de:
-
-- Ejecución correcta.
-- Pruebas realizadas.
-- Resultados.
-- Corrección de errores encontrados.
-
----
-
-## 11. Producto final solicitado
-
-La entrega deberá contener dos elementos principales.
-
-### A. Código
-
-Entregar:
-
-```text
-task_manager.py
-test_task_manager.py
-```
-
-En caso de utilizar otros archivos, deberán incluirse también.
-
-El código debe:
-
-- Ejecutarse correctamente.
-- Mantener una estructura clara.
-- Contener las correcciones realizadas.
-- Incluir las pruebas desarrolladas.
-
-### B. Documento de evidencias
-
-Entregar un documento en PDF o Word con la siguiente estructura:
-
-1. **Análisis inicial**  
-   Presentar los problemas encontrados en el código original.
-
-2. **Uso de Inteligencia Artificial**  
-   Indicar:
-   - Herramienta utilizada.
-   - Cómo se utilizó.
-   - Qué tareas realizó la IA.
-   - Qué decisiones fueron tomadas por el estudiante.
-
-3. **Prompts utilizados**  
-   Presentar los principales prompts utilizados durante el proceso. Como mínimo:
-   - Prompt de análisis.
-   - Prompt de generación/corrección.
-   - Prompt de testing.
-
-4. **Evidencias**  
-   Incluir pantallazos de:
-   - Código original.
-   - Prompt inicial.
-   - Respuesta de la IA.
-   - Código corregido.
-   - Ejecución del programa.
-   - Ejecución de pruebas.
-   - Resultado final.
-
-5. **Código final**  
-   Incluir el enlace al repositorio.
-
-6. **Comparación**  
-   Mostrar las diferencias principales entre la versión inicial y final.
-
-7. **Reflexión**  
-   Responder las siguientes preguntas:
-   1. ¿Qué parte fue realizada por el estudiante?
-   2. ¿La primera respuesta de la IA fue correcta?
-   3. ¿Por qué es necesario validar el código producido por una IA?
-   4. ¿Qué ventaja tuvo proporcionar contexto detallado?
-   5. ¿Qué diferencia encontró entre utilizar IA como generador de código y utilizarla como parte de un proceso de ingeniería?
-
----
-
-## 12. Reglas del taller
-
-Para que la actividad realmente evalúe el enfoque AI-Native, deben cumplirse las siguientes condiciones:
-
-### Regla 1 — La IA está permitida
-
-Se permite utilizar cualquier asistente de programación con IA.
-
-### Regla 2 — No se acepta únicamente el resultado final
-
-La evaluación tendrá en cuenta el proceso. Por esta razón, deben presentarse los prompts y las evidencias de las iteraciones.
-
-### Regla 3 — La solución debe ser verificada
-
-No es suficiente indicar:
-
-```text
-La IA confirmó que el código funciona.
-```
-
-El estudiante debe ejecutar el programa y las pruebas.
-
-### Regla 5 — Debe existir intervención humana
-
-La entrega deberá indicar claramente al menos una decisión realizada por el estudiante después de recibir recomendaciones de la IA.
-
----
-
-## 13. Nivel de exigencia adicional — Opcional
-
-Para estudiantes que quieran profundizar, se puede agregar una de las siguientes extensiones:
-
-### Opción A — Git
-
-Crear un repositorio Git y registrar:
-
-```text
-commit 1 → código original
-commit 2 → primera corrección
-commit 3 → pruebas
-commit 4 → corrección final
-```
-
-### Opción B — Mejora arquitectónica
-
-Transformar el programa de un único archivo en una estructura como:
-
-```text
-task_manager_ai_native/
-│
-├── main.py
-├── models.py
-├── services.py
-├── validators.py
-└── tests/
-```
-
-La IA puede utilizarse para proponer la arquitectura, pero el estudiante debe justificar la decisión.
-
----
-
-## Estructura sugerida del repositorio
-
-```text
-task_manager_ai_native/
-│
-├── task_manager_ai_native.py
-├── test_task_manager.py
-├── README.md
-├── evidencias/
-│   ├── codigo_original.png
-│   ├── prompt_inicial.png
-│   ├── respuesta_ia.png
-│   ├── codigo_corregido.png
-│   ├── ejecucion_programa.png
-│   └── ejecucion_pruebas.png
-└── docs/
-    └── documento_evidencias.pdf
 ```
 
 ---
 
 ## Cómo ejecutar
 
-Ejecutar la aplicación:
+Aplicación (requiere Tkinter):
 
 ```bash
 python task_manager_ai_native.py
 ```
 
-Ejecutar las pruebas:
+Pruebas (no abren la ventana):
 
 ```bash
-pytest -q
+python -m unittest test_task_manager.py -v
 ```
 
-o, si se usa `unittest`:
+Resultado esperado: **18 tests OK**.
 
-```bash
-python -m unittest test_task_manager.py
+Usuarios de la interfaz: `ana`, `jorge`, `jojo`. Cada uno solo ve y modifica sus propias tareas.
+
+---
+
+## Solución
+
+El programa original permitía crear, listar, completar y eliminar tareas, pero no respetaba al dueño de cada tarea y se caía con entradas inválidas.
+
+### Comportamiento corregido
+
+1. Cada tarea pertenece a un usuario.
+2. `list_tasks(user)` solo devuelve las tareas de ese usuario.
+3. Completar y eliminar usan el **índice visible del usuario**, no el índice de la lista global.
+4. Un usuario no puede completar ni eliminar una tarea ajena.
+5. Título vacío, índice vacío, índice no numérico e índice negativo no cierran el programa: muestran un mensaje.
+6. Tkinter se importa de forma opcional para que las pruebas corran sin interfaz.
+
+### Decisión humana (obligatoria en el taller)
+
+Corregir solo `list_tasks` no bastaba. Si esa función devuelve una lista filtrada nueva, `pop(index)` borra la copia y **no** actualiza `tasks`.
+
+La corrección opera sobre el diccionario real:
+
+```python
+def _resolve_owned_task(index, user):
+    """DECISIÓN DEL DESARROLLADOR:
+    El índice es de la lista filtrada del usuario, no de la lista global.
+    complete/delete no hacen pop sobre la copia filtrada: esa lista es
+    solo una vista y no actualizaría `tasks`. Se localiza el mismo dict
+    en la lista global y se opera sobre él.
+    """
+    ...
+    return owned[index]
+
+
+def delete_task(index, user):
+    task = _resolve_owned_task(index, user)
+    tasks.remove(task)
+    return "Tarea eliminada"
+```
+
+### Funciones de negocio
+
+```python
+def add_task(title, user):
+    # valida título y usuario; guarda title, user, completed=False
+
+def list_tasks(user):
+    # solo tareas de ese usuario
+
+def complete_task(index, user):
+    # marca completed=True si la tarea es del usuario
+
+def delete_task(index, user):
+    # elimina el objeto en la lista global tasks
+```
+
+Los errores de negocio se lanzan como `TaskError` (subclase de `ValueError`) y la interfaz los muestra con `messagebox`, sin trazar una excepción cruda al usuario.
+
+---
+
+## 1. Análisis inicial
+
+Hecho **antes** de pedirle a la IA que reescribiera el archivo.
+
+| Problema | Tipo | Impacto | Solución aplicada |
+|---|---|---|---|
+| `list_tasks(user)` ignoraba `user` y devolvía toda la lista `tasks` | Seguridad | Alto | Filtrar por `task["user"] == user` |
+| Completar/eliminar usaban esa lista; un índice tocaba tareas ajenas | Seguridad | Alto | Índice sobre la vista del usuario y comprobación de dueño |
+| Si `list_tasks` devolvía una copia, `pop` no borraba en `tasks` | Funcional | Alto | `tasks.remove(task)` sobre el dict real |
+| `get_index()` hacía `int(...)` fuera del `try`; índice vacío cerraba la app | Funcional | Alto | Validar texto vacío y no numérico con `TaskError` |
+| Título vacío se guardaba | Calidad | Medio | Rechazar título en blanco |
+| Índice negativo es válido en Python y tocaba la última tarea | Seguridad | Medio | Rechazar `index < 0` |
+
+El propio código original marcaba el filtro de `list_tasks` como problema intencional del taller.
+
+---
+
+## 2. Uso de Inteligencia Artificial
+
+- **Herramienta:** Grok (xAI).
+- **Qué hizo la IA:** análisis del código base, propuesta de validaciones, versión corregida y archivo de pruebas.
+- **Qué decidió el estudiante:**
+  1. No aceptar `pop` sobre la lista filtrada.
+  2. Tratar el índice como posición en la vista del usuario, no en `tasks`.
+  3. Importar Tkinter solo si está disponible, para poder probar sin GUI.
+  4. Usar `TaskError` con mensajes de negocio en lugar de `IndexError` / `ValueError` crudos.
+
+La IA no se usó como “haz el programa y listo”. Primero se pidió análisis, después código, después pruebas, y cada salida se revisó.
+
+---
+
+## 3. Prompts utilizados
+
+### Prompt de análisis
+
+```text
+Actúa como ingeniero de software senior en Python.
+
+Sistema: gestor de tareas de escritorio (Tkinter) para ana, jorge y jojo.
+Archivo: task_manager_ai_native.py. Estado en memoria, lista global tasks.
+
+Restricciones:
+- Seguir en Python y Tkinter.
+- Sin base de datos ni frameworks nuevos.
+- No reescribir la interfaz si no hace falta.
+- No des todavía el código corregido.
+
+Requisitos:
+1. Cada tarea pertenece a un usuario.
+2. Un usuario solo ve y modifica las suyas.
+3. Índice inválido, negativo o no numérico no tumba el programa.
+4. Título vacío no se guarda.
+5. Mensajes de error entendibles.
+
+Problemas que ya encontré:
+- list_tasks ignora el usuario.
+- complete_task y delete_task usan esa lista y permiten tocar tareas ajenas.
+- get_index() está fuera del try y un índice vacío cierra la app.
+- Si list_tasks filtra a una lista nueva, delete_task con pop no borra el original.
+
+Analiza el código. Para cada problema: explicación, prioridad y recomendación.
+No generes la solución final.
+```
+
+### Prompt de generación
+
+```text
+Con el análisis anterior, entrega task_manager_ai_native.py corregido.
+
+Exigencias:
+- Mantener crear, listar, completar y eliminar.
+- Conservar Tkinter y la estructura de la ventana.
+- Un usuario solo ve y modifica sus tareas.
+- Validar título e índice.
+- El programa no debe cerrarse ante entradas incorrectas.
+- No hacer pop sobre una lista filtrada: operar sobre el objeto real en tasks.
+- Marcar en un comentario al menos una decisión del desarrollador.
+```
+
+### Prompt de testing
+
+```text
+Crea test_task_manager.py con unittest.
+No abras Tkinter.
+Limpia la lista tasks en setUp.
+
+Cubre como mínimo:
+- creación de una tarea
+- listado
+- restricción por usuario
+- completar
+- eliminar
+- índice inválido
+- usuario inexistente
+- entrada incorrecta (título vacío, índice no entero)
+- intento de modificar una tarea de otro usuario
 ```
 
 ---
 
-## Evidencias requeridas
+## 4. Comparación original vs final
 
-Incluir en el repositorio o en el documento de evidencias:
-
-- Código original.
-- Prompt inicial.
-- Respuesta de la IA.
-- Código corregido.
-- Ejecución del programa.
-- Ejecución de pruebas.
-- Resultado final.
-- Enlace al repositorio.
-
----
-
-## Reflexión
-
-1. ¿Qué parte fue realizada por el estudiante?
-2. ¿La primera respuesta de la IA fue correcta?
-3. ¿Por qué es necesario validar el código producido por una IA?
-4. ¿Qué ventaja tuvo proporcionar contexto detallado?
-5. ¿Qué diferencia encontró entre utilizar IA como generador de código y utilizarla como parte de un proceso de ingeniería?
+| Original | Corregido |
+|---|---|
+| `list_tasks` devolvía `tasks` completa | Devuelve solo las del usuario |
+| Completar/eliminar por índice global | Índice de la vista del usuario + dueño |
+| `pop(index)` sobre la lista visible | `tasks.remove(task)` del objeto real |
+| `int()` fuera del `try` | Validación previa + `TaskError` |
+| Título vacío permitido | Rechazado |
+| Sin pruebas | 18 pruebas unitarias |
+| Mezcla total GUI / lógica | Lógica reusable por los tests; GUI opcional |
 
 ---
 
-## Enlaces
+## 5. Pruebas
 
-- Repositorio base del taller: https://github.com/AndUm423/Taller-AI-Native
+Archivo: [`test_task_manager.py`](test_task_manager.py)
+
+| Grupo | Qué comprueba |
+|---|---|
+| Creación | Alta de tarea y normalización de título/usuario |
+| Listado y restricción | Ana no ve las de Jorge; usuario sin tareas → lista vacía |
+| Completar y eliminar | Operan sobre la propia lista y no tocan al otro usuario |
+| Índice inválido | Fuera de rango, negativo y no entero |
+| Entrada incorrecta | Usuario vacío, título vacío, usuario sin tareas |
+| Tarea ajena | No completar ni eliminar la de otro; el índice 0 de Ana no es la de Jorge |
+
+---
+
+## 6. Revisión humana
+
+1. ¿La IA corrigió los problemas identificados? Sí, con el ajuste humano del `remove`.
+2. ¿Introdujo problemas nuevos? El riesgo era borrar sobre la copia filtrada; se evitó.
+3. ¿La solución es entendible? Sí: validadores, `_resolve_owned_task` y la GUI casi igual.
+4. ¿Se mantienen las funcionalidades? Crear, listar, completar, eliminar y cambio de usuario.
+5. ¿Quedan huecos de seguridad? Un usuario de la GUI ya no ve ni modifica tareas ajenas.
+6. ¿Qué parte modificó el estudiante? El criterio de borrado, el índice visible y la importación opcional de Tkinter.
+
+---
+
+## 7. Reflexión
+
+1. **Qué hizo el estudiante.** El análisis inicial, la tabla de problemas, la decisión de no usar `pop` sobre la vista filtrada, la separación pruebas/GUI y la revisión del código generado.
+2. **¿La primera respuesta de la IA fue correcta?** En lo grueso sí (filtrar por usuario). En el detalle no: una corrección ingenua de `list_tasks` deja `delete_task` inútil porque `pop` actúa sobre una copia.
+3. **¿Por qué validar el código de una IA?** El modelo no ejecuta el programa. Puede arreglar un defecto y crear otro. Las pruebas son la evidencia, no la afirmación de la IA.
+4. **¿Qué aportó el contexto?** Evitó un rediseño con base de datos o frameworks. El modelo trabajó sobre los problemas ya encontrados y sobre las restricciones del enunciado.
+5. **Generador vs proceso de ingeniería.** Pedir “corrige este código” entrega un archivo. El flujo AI-Native entrega análisis, restricciones, código, una decisión humana trazable y pruebas que se pueden repetir.
+
+---
+
+## Estructura del repositorio
+
+```text
+Taller-AI-Native/
+├── README.md                      ← este documento (entrega)
+├── task_manager_ai_native.py      ← solución
+├── test_task_manager.py           ← pruebas
+└── docs/
+    └── documento_evidencias.md
+```
+
+Commit de la solución: https://github.com/ldlavado/Taller-AI-Native/commit/70a03a40d4787f8d423b3a6ef66276deada15f67
+
+---
+
+## Enunciado original del taller
+
+El README del repositorio base describe el propósito, las seis actividades, las reglas (IA permitida, proceso obligatorio, verificación real, intervención humana) y las preguntas de reflexión.
+
+Repositorio base: https://github.com/AndUm423/Taller-AI-Native
